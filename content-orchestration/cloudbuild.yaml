@@ -1,0 +1,52 @@
+# This specifies the custom service account for the entire build process.
+# It should be a top-level field.
+serviceAccount: projects/content-orchestration/serviceAccounts/cloud-run-deployer@content-orchestration.iam.gserviceaccount.com
+
+# Global options for the build, also a top-level field.
+options:
+  # This option directs all build logs to Cloud Logging, rather than a GCS bucket.
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  # Build the Docker image. This step assumes your Dockerfile also handles
+  # the frontend build (e.g., React build) within it.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t', 'gcr.io/${_PROJECT_ID}/content-orchestration:latest',
+      '--build-arg', 'REACT_APP_GOOGLE_CLIENT_ID=${_REACT_APP_GOOGLE_CLIENT_ID}',
+      # Added: Pass the backend URL to the frontend build
+      '--build-arg', 'REACT_APP_FLASK_BACKEND_URL=${_REACT_APP_FLASK_BACKEND_URL}',
+      '.'
+    ]
+  # DEPLOY TO CLOUD RUN
+  # This step uses the gcloud CLI to deploy the container image to Cloud Run.
+  # It now includes the --set-env-vars flag to pass runtime environment variables.
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'content-orchestration-version2' # The name of your Cloud Run service
+      - '--image'
+      - 'gcr.io/${_PROJECT_ID}/content-orchestration:latest' # The image to deploy
+      - '--region'
+      - 'asia-south1' # The region where your Cloud Run service will be deployed
+      - '--allow-unauthenticated' # Allows unauthenticated access to the service
+      - '--set-env-vars'
+      - 'JWT_SECRET_KEY=${_JWT_SECRET_KEY},GCS_BUCKET_NAME=${_GCS_BUCKET_NAME},PROJECT_ID=${_PROJECT_ID},CONTENT_METADATA_DATABASE_ID=${_CONTENT_METADATA_DATABASE_ID},USER_DATABASE_ID=${_USER_DATABASE_ID},GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}'
+
+# This tells Cloud Build which container images are produced by this build.
+images: ['gcr.io/${_PROJECT_ID}/content-orchestration:latest']
+
+# Define build-time substitutions. These values are replaced during the build process.
+# You must provide the values when triggering the build.
+substitutions:
+  _PROJECT_ID: 'content-orchestration'
+  _REACT_APP_GOOGLE_CLIENT_ID: '532286902368-7159ntgsp0h30ad5ke02rmbtqani8pja.apps.googleusercontent.com'
+  # Added: A substitution variable for the backend URL
+  _REACT_APP_FLASK_BACKEND_URL: 'https://content-orchestration-version2-532286902368.asia-south1.run.app'
+  _JWT_SECRET_KEY: '8546fe30785fa99e5f003c8516cbd31ab00bfa8e3ec6cc7c'
+  _GCS_BUCKET_NAME: 'user-content-store'
+  _CONTENT_METADATA_DATABASE_ID: 'content-metadata'
+  _USER_DATABASE_ID: 'co-user-credentials'
+  _GOOGLE_CLIENT_ID: '532286902368-7159ntgsp0h30ad5ke02rmbtqani8pja.apps.googleusercontent.com'

@@ -1,0 +1,357 @@
+/* Global Styles & Theme Variables */
+
+/* Import Google Font: Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Define CSS variables for consistent theming */
+:root {
+  --primary-start: #8E2DE2;       /* Gradient start (purple) */
+  --primary-end: #4A00E0;         /* Gradient end (deep violet) */
+  --accent-color: #D31A7A;        /* Accent color (pink) */
+  --page-background: #f8fafc;     /* Page background (light gray) */
+  --text-primary: #1a202c;        /* Dark text */
+  --text-secondary: #4a5568;      /* Subtext (gray) */
+  --card-background: #ffffff;     /* White cards */
+  --shadow-color: rgba(149, 157, 165, 0.15); /* Soft shadows */
+}
+
+/* Base body styling */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--page-background); 
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Wrapper for the entire page */
+.pageWrapper {
+  background-color: transparent; 
+  overflow-x: hidden;
+}
+
+/* Max-width container for page content */
+.pageContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/*  Navbar Styles  */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 100;
+  backdrop-filter: blur(12px); /* Frosted effect */
+  border-bottom: 1px solid #eef0f2;
+}
+
+/* Navbar logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Gradient text logo */
+.nav-logo span {
+  background-image: linear-gradient(to right, #D31A7A 0%, #8E2DE2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Navbar links (buttons) */
+.nav-links button {
+  margin: 0 1rem;
+  color: #0a0000;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem; 
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-links button:hover {
+  color: var(--primary-start);
+}
+
+/* Navbar action buttons (login/signup) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Generic button styling */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary button with gradient */
+.btn-primary {
+  background-image: linear-gradient(to right, #D31A7A 0%, #8E2DE2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+}
+
+/*  Hero Section  */
+.heroSlideshowContainer {
+  width: 100%;
+  height: 90vh; 
+  min-height: 700px;
+  position: relative;
+  background-image: linear-gradient(135deg, #ffffff 0%, #eef2f5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.heroContent {
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+/* Left-side text */
+.heroText {
+  color: var(--text-primary);
+  flex: 1 1 50%;
+  max-width: 600px;
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.heroText h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.heroText p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+/* Right-side login card */
+.heroLoginContainer {
+  flex: 1 1 40%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.1);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  padding: 2.5rem;
+  animation: slideInFromRight 0.8s ease-out 0.2s forwards;
+}
+
+/*  Login Form Styles  */
+.heroLoginHeader h1 {
+  color: #111827;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.heroLoginHeader h2 {
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.google-button-wrapper {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.divider {
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Input fields */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #c026d3;
+  box-shadow: 0 0 0 3px rgba(192, 38, 211, 0.15);
+}
+
+/* Submit button */
+.submit-button {
+  background: linear-gradient(to right, #d946ef, #db2777);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.5rem;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(219, 39, 119, 0.25);
+}
+
+/* Error message */
+.error-message {
+  color: #b91c1c;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/*  Features Section */
+.featuresContainer {
+  background-color: transparent;
+  padding: 5rem 0;
+}
+
+.featuresSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.feature {
+  background-color: var(--card-background);
+  padding: 2rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 24px var(--shadow-color);
+  border: 1px solid #eef0f2;
+  border-left: 4px solid var(--primary-start);
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 32px var(--shadow-color);
+}
+
+/*  Info Section (with animation) */
+.infoSection {
+  padding: 5rem 0;
+  border-bottom: 1px solid #eef0f2;
+}
+
+/* Alternating layout */
+.infoSection:nth-of-type(even) .infoSectionContent {
+  flex-direction: row-reverse;
+}
+
+/* Title text with gradient */
+.infoText h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background-image: linear-gradient(to right, var(--accent-color) 0%, var(--primary-start) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* List items with checkmarks */
+.infoText ul li::before {
+  content: '✓';
+  color: var(--accent-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/*  Animations */
+@keyframes slideInFromLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: left;
+    gap: 2rem;
+  }
+  .heroText, .heroLoginContainer {
+    max-width: 550px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .heroText h1 { font-size: 2.5rem; }
+  .infoSectionContent {
+    flex-direction: column !important;
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,52 @@
+/* App Component Global Styles */
+
+/* Center-align text inside the main App container */
+.App {
+  text-align: center;
+}
+
+/* React logo styles */
+.App-logo {
+  height: 40vmin;  /* Logo scales with viewport size */
+  pointer-events: none;  /* Prevents user interaction (click/drag) */
+}
+
+
+/* Add spinning animation to logo, 
+   but only if user hasn’t enabled "reduced motion" in system settings */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;  /* infinite rotation every 20s */
+  }
+}
+
+
+/* Header container styling */
+.App-header {
+  background-color: #282c34;           /* Dark background */
+  min-height: 100vh;                     /* Full viewport height */
+  display: flex;                         /* Flexbox layout */
+  flex-direction: column;                /* Stack items vertically */
+  align-items: center;                   /* Center horizontally */
+  justify-content: center;               /* Center vertically */
+  font-size: calc(10px + 2vmin);         /* Responsive font size */
+  color: white; 
+}
+
+
+/* Styling for links in the app */
+.App-link {
+  color: #61dafb;  /* React blue color */
+}
+
+/* Animations */
+
+/* Logo spin animation keyframes */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);  /* Start at 0 degrees */
+  }
+  to {
+    transform: rotate(360deg);  /* End at 360 degrees (full circle) */
+  }
+}

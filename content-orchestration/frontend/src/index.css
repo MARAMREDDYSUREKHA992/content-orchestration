@@ -1,0 +1,24 @@
+    /* frontend/src/index.css */
+    /*
+      This file is typically used for global CSS,
+      Tailwind CSS directives, or importing fonts.
+    */
+
+    /* Tailwind CSS directives */
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    /* Basic body styling and font import */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif; /* Inter font imported via CDN in App.js */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
+    

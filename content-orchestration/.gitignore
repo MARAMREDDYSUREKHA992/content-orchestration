@@ -1,0 +1,33 @@
+
+
+# Sensitive environment variables and credentials
+# IMPORTANT: Never commit secret keys!
+*.env
+.env.*
+.flaskenv
+my_credentials.json
+key.json
+
+# =============================================================================
+# Python / Backend Specific
+# =============================================================================
+# Virtual environment
+/backend/venv/
+/backend/.venv/
+/backend/env/
+/backend/.Python/
+
+# Bytecode and compiled files
+/backend/__pycache__/
+/backend/*.pyc
+/backend/*.pyo
+/backend/*.pyd 
+
+# =============================================================================
+# Node / Frontend Specific
+# =============================================================================
+# Dependencies
+/frontend/node_modules/
+/frontend/.env/
+frontend/env/
+

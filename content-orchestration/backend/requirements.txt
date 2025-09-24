@@ -1,0 +1,9 @@
+Flask
+Flask-Login
+google-auth
+google-cloud-storage
+firebase-admin
+Flask-Cors
+python-dotenv
+Flask-JWT-Extended
+gunicorn 
